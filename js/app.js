@@ -40,10 +40,10 @@ function compile() {
     document.body.onkeyup = function() {
       compile_code.open();
       compile_code.writeln(
+        htmlCode.getValue() +
           "<style>" +
           cssCode.getValue() +
           "</style>" +
-          htmlCode.getValue() +
           "<script>" +
           javascriptCode.getValue() +
           "</script>"
@@ -57,4 +57,34 @@ function setting(){
     htmlCode.setOption("theme","base16-dark");
     javascriptCode.setOption("theme","base16-dark");
     cssCode.setOption("theme","base16-dark");
+}
+
+function jsLibrary(library){
+  var element = htmlCode.getValue();
+  if(library!=""){
+    htmlCode.setOption("value",`${element}\n<script src="${library}"></script>`);
+    var x = document.getElementById("snackbar");
+    if(library=='js/jquery-3.5.1.min.js'){
+      x.className = "";
+    }else{
+      var s = library.split("/");
+      var s1 = s[1].split(".");
+      x.className = "show";
+      x.innerHTML = `Import ${s1[0]} css file also`;
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+  }
+}
+
+function cssLibrary(library){
+  var element = htmlCode.getValue();
+  if(library!=""){
+    htmlCode.setOption("value",`<link rel="stylesheet" href="${library}">\n${element}`);
+    var x = document.getElementById("snackbar");
+    var s = library.split("/");
+    var s1 = s[1].split(".");
+    x.className = "show";
+    x.innerHTML = `Import ${s1[0]} js file also`;
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
 }

@@ -6,31 +6,79 @@
     <title>Code Editor</title>
     <link rel="stylesheet" href="css/codemirror.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/addon/show-hint.css">
     <link rel="stylesheet" href="css/theme/base16-dark.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div id="snackbar">Don't Forget to import it's js/css file</div>
     <div id="top">
         <div id="logo">Online Code Editor</div>
-        <button onclick="setting()">Setting</button>
+        <nav>
+            <select name="library" id="library" onchange="cssLibrary(this.options[this.selectedIndex].value)">
+                <option value="">CSS Library</option>
+                <option value="css/jquery-ui.css">jquery-ui</option>
+                <option value="css/bootstrap.min.css">bootstrap</option>
+                <option value="css/leaflet.css">leaflet</option>
+            </select>
+            <select name="library" id="library" onchange="jsLibrary(this.options[this.selectedIndex].value)">
+                <option value="">Js Library</option>
+                <option value="js/jquery-3.5.1.min.js">jquery</option>
+                <option value="js/jquery-ui.min.js">jquery-ui</option>
+                <option value="js/bootstrap.min.js">bootstrap</option>
+                <option value="js/leaflet.js">leaflet</option>
+            </select>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Settings</button>
+        </nav>
     </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Code Editor Settings</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <button class="btn btn-primary" onclick="setting()">Dark Theme</button>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <div id="container">
-        <div class="ui-layout-center"><div id="javascript"></div></div>
+        <div class="ui-layout-center">
+            <div class="code-top"><center>Javascript</center></div>
+            <div id="javascript"></div>
+        </div>
         <div class="ui-layout-south"><iframe id="code"></iframe></div>
-        <div class="ui-layout-east"><div id="css"></div></div>
-        <div class="ui-layout-west"><div id="html"></div></div>
+        <div class="ui-layout-east">
+            <div class="code-top"><center>CSS</center></div>
+            <div id="css"></div>
+        </div>
+        <div class="ui-layout-west">
+            <div class="code-top"><center>HTML</center></div>
+            <div id="html"></div>
+        </div>
     </div>
     <!-- Javascript Section -->
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/codemirror.js"></script>
     <script src="js/addon/show-hint.js"></script>
     <script src="js/addon/html-hint.js"></script>
     <script src="js/mode/javascript.js"></script>
     <script src="js/mode/css.js"></script>
+    <script src="js/mode/xml.js"></script>
     <script src="js/addon/closebrackets.js"></script>
     <script src="js/addon/closetag.js"></script>
     <script src="js/app.js"></script>
