@@ -17,6 +17,8 @@ var htmlCode = CodeMirror(html, {
     value: '<div id="a"></div>',
     mode:  "text/html",
     lineWrapping: true,
+    autoCloseBrackets: true,
+    autoCloseTags: true,
     });
 var javascriptCode = CodeMirror(javascript, {
     lineNumbers: true,
@@ -38,6 +40,7 @@ var cssCode = CodeMirror(css, {
 function compile() {
     var compile_code = code.contentWindow.document;
     document.body.onkeyup = function() {
+      console.clear();
       compile_code.open();
       compile_code.writeln(
         htmlCode.getValue() +
